@@ -14,9 +14,10 @@
 				font-family: 'Helvetica Neue', Arial, sans-serif;
 				text-align: center;
 				margin: 0;
+				padding-top: 50px; /* To ensure content is not hidden behind the nav bar on mobile */
 			}
 			nav {
-				position: absolute;
+				position: fixed;
 				top: 0;
 				width: 100%;
 				background: #444;
@@ -27,9 +28,9 @@
 			}
 			nav a {
 				color: white;
-				margin: 0 20px;
+				margin: 0 10px;
 				text-decoration: none;
-				font-size: 1.4em;
+				font-size: 1.2em;
 				font-weight: 300;
 				padding: 5px 10px;
 				transition: background 0.3s, color 0.3s;
@@ -108,11 +109,43 @@
 				}
 			}
 			p {
-				font-size: 1.4em;
+				font-size: 1.2em;
 				max-width: 600px;
 				margin: 0 20px;
 				line-height: 1.6;
 				font-weight: 300;
+			}
+			footer {
+				position: absolute;
+				bottom: 10px;
+				font-size: 0.8em;
+				color: #aaa;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				padding: 0 20px;
+				box-sizing: border-box;
+			}
+			@media (max-width: 600px) {
+				nav a {
+					font-size: 1em;
+					margin: 0 5px;
+				}
+				.loader {
+					height: 12em; /* Adjusted size for smaller screens */
+					width: 12em;  /* Adjusted size for smaller screens */
+				}
+				p {
+					font-size: 1em;
+				}
+				footer {
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+				}
+				footer span {
+					margin-top: 5px;
+				}
 			}
 		</style>
 	</head>
@@ -127,6 +160,10 @@
 			<div class="circle orange"></div>
 			<div class="circle yellow"></div>
 		</div>
-		<p>Thanks for being here, once I have enough time, I'll work on this website more - KF</p>
+		<p>Thanks for being here, once I have enough time, I'll work on this website more.</p>
+		<footer>
+			<div>Last updated: June 16, 2024</div>
+			<div><span>KF</span></div>
+		</footer>
 	</body>
 </html>
