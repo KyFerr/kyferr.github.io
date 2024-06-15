@@ -5,18 +5,48 @@
 			body {
 				height: 100vh;
 				display: flex;
+				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				overflow: hidden;
 				background: #1b2227;
+				color: white;
+				font-family: 'Helvetica Neue', Arial, sans-serif;
+				text-align: center;
+				margin: 0;
+			}
+			nav {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				background: #444;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+				padding: 10px 0;
+				text-align: center;
+				z-index: 1000;
+			}
+			nav a {
+				color: white;
+				margin: 0 20px;
+				text-decoration: none;
+				font-size: 1.4em;
+				font-weight: 300;
+				padding: 5px 10px;
+				transition: background 0.3s, color 0.3s;
+				border-radius: 5px;
+			}
+			nav a:hover {
+				background: #555;
+				color: #ffcc00;
 			}
 			.loader {
-				height: 9em;
-				width: 9em;
+				height: 15em; /* Increased size */
+				width: 15em;  /* Increased size */
 				position: relative;
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				margin-bottom: 20px;
 			}
 			.circle {
 				position: absolute;
@@ -77,14 +107,26 @@
 					transform: rotateY(70deg) rotateZ(360deg);
 				}
 			}
+			p {
+				font-size: 1.4em;
+				max-width: 600px;
+				margin: 0 20px;
+				line-height: 1.6;
+				font-weight: 300;
+			}
 		</style>
 	</head>
 	<body>
+		<nav>
+			<a href="#home">Home</a>
+			<a href="#contact">Contact</a>
+		</nav>
 		<div class="loader">
 			<div class="circle white"></div>
 			<div class="circle red"></div>
 			<div class="circle orange"></div>
 			<div class="circle yellow"></div>
 		</div>
+		<p>Thanks for being here, once I have enough time, I'll work on this website more - KF</p>
 	</body>
 </html>
