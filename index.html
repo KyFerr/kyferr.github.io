@@ -1,153 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<style>
-			body {
-				height: 100vh;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				overflow: hidden;
-				background: #1b2227;
-				color: white;
-				font-family: 'Helvetica Neue', Arial, sans-serif;
-				text-align: center;
-				margin: 0;
-				padding-top: 50px; /* To ensure content is not hidden behind the nav bar on mobile */
-			}
-			nav {
-				position: fixed;
-				top: 0;
-				width: 100%;
-				background: #444;
-				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-				padding: 10px 0;
-				text-align: center;
-				z-index: 1000;
-			}
-			nav a {
-				color: white;
-				margin: 0 10px;
-				text-decoration: none;
-				font-size: 1.2em;
-				font-weight: 300;
-				padding: 5px 10px;
-				transition: background 0.3s, color 0.3s;
-				border-radius: 5px;
-			}
-			nav a:hover {
-				background: #555;
-				color: #ffcc00;
-			}
-			.loader {
-				height: 15em; /* Increased size */
-				width: 15em;  /* Increased size */
-				position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				margin-bottom: 20px;
-			}
-			.circle {
-				position: absolute;
-				height: 80%;
-				width: 80%;
-				border-radius: 50%;
-				border-style: solid;
-			}
-			.white {
-				border-width: 3px 3px 0 0;
-				border-color: white white transparent transparent;
-				animation: 1s rotate-white linear infinite;
-			}
-			.red {
-				border-width: 0 0 3px 3px;
-				border-color: transparent transparent red red;
-				animation: 1s rotate-red linear infinite;
-			}
-			.orange {
-				border-width: 0 3px 3px 0;
-				border-color: transparent orange orange transparent;
-				animation: 1s rotate-orange linear infinite;
-			}
-			.yellow {
-				border-width: 3px 0 0 3px;
-				border-color: yellow transparent transparent yellow;
-				animation: 1s rotate-yellow linear infinite;
-			}
-			@keyframes rotate-white {
-				from {
-					transform: rotateX(45deg) rotateY(-35deg) rotateZ(0deg);
-				}
-				to {
-					transform: rotateX(45deg) rotateY(-35deg) rotateZ(360deg);
-				}
-			}
-			@keyframes rotate-red {
-				from {
-					transform: rotateX(45deg) rotateY(35deg) rotateZ(0deg);
-				}
-				to {
-					transform: rotateX(45deg) rotateY(35deg) rotateZ(360deg);
-				}
-			}
-			@keyframes rotate-pink {
-				from {
-					transform: rotateX(70deg) rotateZ(0deg);
-				}
-				to {
-					transform: rotateX(70deg) rotateZ(360deg);
-				}
-			}
-			@keyframes rotate-yellow {
-				from {
-					transform: rotateY(70deg) rotateZ(0deg);
-				}
-				to {
-					transform: rotateY(70deg) rotateZ(360deg);
-				}
-			}
-			p {
-				font-size: 1.2em;
-				max-width: 600px;
-				margin: 0 20px;
-				line-height: 1.6;
-				font-weight: 300;
-			}
-			footer {
-				position: absolute;
-				bottom: 10px;
-				font-size: 0.8em;
-				color: #aaa;
-				width: 100%;
-				display: flex;
-				justify-content: space-between;
-				padding: 0 20px;
-				box-sizing: border-box;
-			}
-			@media (max-width: 600px) {
-				nav a {
-					font-size: 1em;
-					margin: 0 5px;
-				}
-				.loader {
-					height: 12em; /* Adjusted size for smaller screens */
-					width: 12em;  /* Adjusted size for smaller screens */
-				}
-				p {
-					font-size: 1em;
-				}
-				footer {
-					flex-direction: column;
-					align-items: center;
-					text-align: center;
-				}
-				footer span {
-					margin-top: 5px;
-				}
-			}
-		</style>
+		<link rel="stylesheet" href="style.css" >
 	</head>
 	<body>
 		<nav>
@@ -163,6 +17,43 @@
 		<p>Thanks for being here, once I have enough time, I'll work on this website more.</p>
 		<footer>
 			<div>Last updated: June 16, 2024</div>
+			<div id = "socials">
+			<ol class="footer-links">
+				<li class="footer-link">
+				  <a title="GitHub" href="https://github.com/KyFerr" target="_blank" rel="noopener">
+					<img
+					  height="32"
+					  width="32"
+					  loading="lazy"
+					  src="https://cdn.simpleicons.org/github/181717"
+					  alt="GitHub"
+				  />
+				</a>
+				</li>
+				<li class="footer-link">
+					<a title="Instagram" href="https://www.instagram.com/kyranferns/" target="_blank" rel="noopener">
+					  <img
+						height="32"
+						width="32"
+						loading="lazy"
+						src="https://cdn.simpleicons.org/instagram/E4405F"
+						alt="Instagram"
+					/>
+				  </a>
+				  </li>
+				  <li class="footer-link">
+					<a title="Facebook" href="https://www.facebook.com/kyranferns" target="_blank" rel="noopener">
+					  <img
+						height="32"
+						width="32"
+						loading="lazy"
+						src="https://cdn.simpleicons.org/facebook/0866FF"
+						alt="Facebook"
+					/>
+				  </a>
+				  </li>
+			  </ol>
+			  </div>
 			<div><span>KF</span></div>
 		</footer>
 	</body>
