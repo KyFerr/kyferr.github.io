@@ -121,6 +121,7 @@ footer {
     justify-content: space-between;
     padding: 0 20px;
     box-sizing: border-box;
+    align-items: center;
 }
 @media (max-width: 600px) {
     nav a {
@@ -174,3 +175,7 @@ footer {
   body.dark .footer-link img {
     filter: invert(1);
   }
+
+#socials {
+    padding: 10px;
+}
