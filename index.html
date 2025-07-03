@@ -1,60 +1,287 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<link rel="stylesheet" href="style.css" >
-	</head>
-	<body>
-		<nav>
-			<a href="#home">Home</a>
-			<a href="#contact">Contact</a>
-		</nav>
-		<div class="loader">
-			<div class="circle white"></div>
-			<div class="circle red"></div>
-			<div class="circle orange"></div>
-			<div class="circle yellow"></div>
-		</div>
-		<p>Thanks for being here, once I have enough time, I'll work on this website more.</p>
-		<footer>
-			<div>Last updated: June 16, 2024</div>
-			<div id = "socials">
-			<ol class="footer-links">
-				<li class="footer-link">
-				  <a title="GitHub" href="https://github.com/KyFerr" target="_blank" rel="noopener">
-					<img
-					  height="32"
-					  width="32"
-					  loading="lazy"
-					  src="https://cdn.simpleicons.org/github/181717"
-					  alt="GitHub"
-				  />
-				</a>
-				</li>
-				<li class="footer-link">
-					<a title="Instagram" href="https://www.instagram.com/kyranferns/" target="_blank" rel="noopener">
-					  <img
-						height="32"
-						width="32"
-						loading="lazy"
-						src="https://cdn.simpleicons.org/instagram/E4405F"
-						alt="Instagram"
-					/>
-				  </a>
-				  </li>
-				  <li class="footer-link">
-					<a title="Facebook" href="https://www.facebook.com/kyranferns" target="_blank" rel="noopener">
-					  <img
-						height="32"
-						width="32"
-						loading="lazy"
-						src="https://cdn.simpleicons.org/facebook/0866FF"
-						alt="Facebook"
-					/>
-				  </a>
-				  </li>
-			  </ol>
-			  </div>
-			<div><span>KF</span></div>
-		</footer>
-	</body>
-</html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Kyran Fernandes | Portfolio</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        />
+
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body class="overflow-x-hidden">
+
+        <div id="loading-screen" role="alert" aria-live="assertive" aria-busy="true">
+            <div class="loader">
+                <div class="circle white"></div>
+                <div class="circle red"></div>
+                <div class="circle orange"></div>
+                <div class="circle yellow"></div>
+            </div>
+            <p class="text-lg">Loading...</p>
+        </div>
+
+        <div id="main-content" class="hidden-content" tabindex="-1">
+            <nav class="bg-gray-800 text-white p-4 fixed w-full z-50 shadow-lg" role="navigation" aria-label="Primary Navigation">
+                <div class="max-w-6xl mx-auto flex justify-between items-center">
+                    <a href="#home" class="text-2xl font-bold">Kyran Fernandes</a>
+                    <div class="hidden md:flex space-x-6">
+                        <a href="#home" class="nav-link">Home</a>
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#activities" class="nav-link">Activities</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </div>
+                    <button
+                    id="mobile-menu-btn"
+                    class="md:hidden text-white focus:outline-none"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                    aria-label="Toggle navigation menu"
+                    >
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="mobile-menu" class="md:hidden hidden bg-gray-700 mt-2 rounded-md" role="menu">
+                    <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Home</a>
+                    <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">About</a>
+                    <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Projects</a>
+                    <a href="#activities" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Activities</a>
+                    <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Contact</a>
+                </div>
+            </nav>
+
+            <section id="home" class="min-h-screen gradient-bg flex items-center justify-center text-white pt-16">
+                <div class="text-center px-6">
+                    <div class="fade-in">
+                        <div
+                        class="w-32 h-32 mx-auto mb-8 bg-white/20 rounded-full flex items-center justify-center text-6xl backdrop-blur-sm"
+                        aria-hidden="true"
+                        >
+                            🎓
+                        </div>
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6">Kyran Fernandes</h1>
+                        <p class="text-xl md:text-2xl mb-8">Year 13 Student</p>
+                        <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+                        </p>
+                        <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
+                            <button
+                            onclick="scrollToSection('about')"
+                            class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
+                            >
+                                Learn More
+                            </button>
+                            <button
+                            onclick="scrollToSection('contact')"
+                            class="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300"
+                            >
+                                Get In Touch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="py-20 bg-white">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="fade-in">
+                        <h2 class="text-3xl font-bold text-center section-heading mx-auto">About Me</h2>
+                        <div class="grid md:grid-cols-2 gap-12 items-center mt-16">
+                            <div>
+                                <div
+                                class="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center overflow-hidden"
+                                >
+                                    <img src="img/me.jpg" alt="Kyran Fernandes" class="about-profile-img" />
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-6 text-blue-600"></h3>
+                                <p class="text-gray-600 mb-6 leading-relaxed">
+                                    Hi! I'm Kyran, a Year 13 student at Vanguard Military School with a passion for chess, hockey, technology, and tennis.
+                                    I love strategic thinking and competitive sports, and am always eager to learn new things.
+                                </p>
+                                <p class="text-gray-600 mb-8 leading-relaxed">
+                                    When I'm not studying, you'll find me playing video games, playing hockey, coding personal projects,
+                                    or hitting tennis balls on the court. I'm excited about pursuing computer science at university
+                                </p>
+                                <div class="text-center">
+                                    <div class="inline-block p-6 bg-gray-50 rounded-lg">
+                                        <div class="text-3xl font-bold text-blue-600">Class of 2025</div>
+                                        <div class="text-gray-600 mt-2">Vanguard Military School</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="py-20 bg-gray-100">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="fade-in">
+                        <h2 class="text-3xl font-bold text-center section-heading mx-auto">My Projects</h2>
+                        <div class="flex flex-col items-center justify-center py-10 text-center">
+                            <div
+                            class="w-24 h-24 mx-auto mb-6 bg-yellow-200 rounded-full flex items-center justify-center text-5xl text-yellow-700 shadow-lg"
+                            aria-hidden="true"
+                            >
+                                💡
+                            </div>
+                            <p class="text-gray-800 text-xl font-semibold mb-3 max-w-2xl">
+                                I currently have no personal projects to display here.
+                            </p>
+                            <p class="text-gray-600 text-md mb-6 max-w-2xl">
+                                However, I am incredibly eager to start building some exciting new projects! My current focus is on my studies and other commitments, but I look forward to dedicating time to creative coding in the future.
+                            </p>
+                            <p class="text-gray-500 text-sm italic">
+                                Stay tuned for updates!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="activities" class="py-20 bg-gray-50">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="fade-in">
+                        <h2 class="text-3xl font-bold text-center section-heading mx-auto">Activities & Interests</h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                            <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                                <div class="text-5xl mb-4">♟️</div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-600">Chess</h3>
+                                <p class="text-gray-600 text-sm"></p>
+                            </div>
+
+                            <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                                <div class="text-5xl mb-4">🏑</div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-600">Hockey</h3>
+                                <p class="text-gray-600 text-sm"></p>
+                            </div>
+
+                            <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                                <div class="text-5xl mb-4">💻</div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-600">Coding </h3>
+                                <p class="text-gray-600 text-sm"></p>
+                            </div>
+
+                            <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
+                                <div class="text-5xl mb-4">🎾</div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-600">Tennis</h3>
+                                <p class="text-gray-600 text-sm"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="py-20 bg-white">
+                <div class="max-w-4xl mx-auto px-6">
+                    <div class="fade-in">
+                        <h2 class="text-3xl font-bold text-center section-heading mx-auto">Let's Connect!</h2>
+                        <div class="grid md:grid-cols-2 gap-12 mt-16">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-6 text-blue-600">Get In Touch</h3>
+                                <p class="text-gray-600 mb-8 leading-relaxed">
+                                    I'm always excited to connect with fellow students, mentors, and anyone interested in technology and innovation.
+                                    Feel free to reach out through any of these platforms!
+                                </p>
+
+                                <div class="space-y-4">
+                                    <a href="mailto:kyranfernandes08@gmail.com" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-300 social-icon">
+                                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-xl">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Email</div>
+                                            <div class="text-gray-600">kyranfernandes08@gmail.com</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://instagram.com/kyranferns" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-300 social-icon">
+                                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-xl">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Instagram</div>
+                                            <div class="text-gray-600">@kyranferns</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="https://facebook.com/kyranferns" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-300 social-icon">
+                                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">
+                                            <i class="fa-brands fa-facebook-f"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-800">Facebook</div>
+                                            <div class="text-gray-600">kyranferns</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)" aria-label="Contact Form">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                                    <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    placeholder="Your Name"
+                                    class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                                    <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    required
+                                    placeholder="Your Email"
+                                    class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                                    <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="5"
+                                    required
+                                    placeholder="Your Message"
+                                    class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                    ></textarea>
+                                </div>
+                                <button
+                                type="submit"
+                                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300"
+                                >
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="bg-gray-800 text-white text-center p-6">
+                <p>© 2025 Kyran Fernandes. All rights reserved
+                </p>
+            </footer>
+        </div>
+
+        <script src="scripts.js"></script>
+    </body>
+    </html>
