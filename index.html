@@ -2,14 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kyran Fernandes | Portfolio</title>
 
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght400;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Cyan and Emerald are the new primary/secondary colors
+                        'primary': '#06b6d4', // NEW: Cyan-500
+                        'secondary': '#10b981', // NEW: Emerald-500
+                        'accent': '#f59e0b', // Amber-500 (Used for the name)
+                        'dark-bg': '#0c1017', // DEEPER NAVY/CHARCOAL (Main background)
+                        'dark-card': '#1f2937', // Gray-800 (Secondary card background)
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Font Awesome for icons -->
     <link
@@ -17,12 +34,209 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
 
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="styles.css" />
-</head>
-<body class="overflow-x-hidden">
+    <!-- Custom CSS Stylesheet (Inlined) -->
+    <style>
+        /* Reset box-sizing and base styles */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-    <!-- Loading Screen -->
+        body {
+            font-family: "Inter", sans-serif; 
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
+        }
+
+        /* --- General Aesthetics --- */
+        .header-sticky {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            /* Using a transparent version of the new dark-bg */
+            background-color: rgba(12, 16, 23, 0.95); 
+            backdrop-filter: blur(8px); 
+            border-bottom: 1px solid #374151; 
+        }
+
+        /* UPDATED GRADIENT: Cyan to Emerald */
+        .gradient-bg {
+            background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%); 
+        }
+        
+        .section-heading {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px; 
+            color: #f3f4f6; 
+        }
+
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px; 
+            height: 4px;
+            background-color: #f59e0b; /* Accent color: Amber */
+            border-radius: 2px;
+        }
+
+        /* Enhanced Navigation Link Hover */
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background-color: #f59e0b; 
+            transform: scaleX(0); 
+            transition: transform 0.3s ease-in-out;
+            border-radius: 1.5px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Project Card Hover Effect */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.1); 
+        }
+        
+        .project-img-container {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Contact icon hover uses new primary color */
+        .contact-icon-bg:hover {
+            background-color: #06b6d4; 
+            color: white;
+        }
+
+        /* --- 3D LOADING SCREEN STYLES --- */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #0c1017; /* Use new dark-bg color */
+            color: white;
+            font-family: 'Inter', sans-serif; 
+            text-align: center;
+            z-index: 9999; 
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            opacity: 1;
+            pointer-events: auto;
+            visibility: visible;
+            transform-style: preserve-3d;
+            perspective: 1000px; 
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        .loader {
+            height: 15em;
+            width: 15em;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d; 
+            margin-bottom: 20px;
+        }
+
+        .circle {
+            position: absolute;
+            height: 80%;
+            width: 80%;
+            border-radius: 50%;
+            border-style: solid;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); 
+            transform-style: preserve-3d; 
+        }
+
+        .white { border-width: 3px 3px 0 0; border-color: #ffffff #ffffff transparent transparent; animation: rotate-white 1s linear infinite; }
+        .red { border-width: 0 0 3px 3px; border-color: transparent transparent #ef4444 #ef4444; animation: rotate-red 1s linear infinite; }
+        .orange { border-width: 0 3px 3px 0; border-color: transparent #f97316 #f97316 transparent; animation: rotate-orange 1s linear infinite; }
+        .yellow { border-width: 3px 0 0 3px; border-color: #facc15 transparent transparent #facc15; animation: rotate-yellow 1s linear infinite; }
+
+        @keyframes rotate-white { from { transform: rotateX(45deg) rotateY(-35deg) rotateZ(0deg); } to { transform: rotateX(45deg) rotateY(-35deg) rotateZ(360deg); } }
+        @keyframes rotate-red { from { transform: rotateX(45deg) rotateY(35deg) rotateZ(0deg); } to { transform: rotateX(45deg) rotateY(35deg) rotateZ(360deg); } }
+        @keyframes rotate-orange { from { transform: rotateX(70deg) rotateZ(0deg); } to { transform: rotateX(70deg) rotateZ(360deg); } }
+        @keyframes rotate-yellow { from { transform: rotateY(70deg) rotateZ(0deg); } to { transform: rotateY(70deg) rotateZ(360deg); } }
+
+        @media (max-width: 600px) {
+            #loading-screen .loader {
+                height: 12em;
+                width: 12em;
+            }
+            #loading-screen p {
+                font-size: 1em;
+            }
+        }
+        /* --- END LOADING SCREEN STYLES --- */
+
+        /* Hide main content initially */
+        .hidden-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Utility classes */
+        .img-crop-circle {
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .about-profile-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .about-profile-img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden bg-dark-bg text-gray-100">
+
+    <!-- Loading Screen (Integrated 3D Loader) -->
     <div id="loading-screen" role="alert" aria-live="assertive" aria-busy="true">
         <div class="loader">
             <div class="circle white"></div>
@@ -30,285 +244,372 @@
             <div class="circle orange"></div>
             <div class="circle yellow"></div>
         </div>
-        <p class="text-lg">Loading...</p>
+        <p class="text-lg font-semibold tracking-wide">Loading Kyran's Portfolio...</p>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content (Hidden initially by .hidden-content class) -->
     <div id="main-content" class="hidden-content" tabindex="-1">
-        <!-- Navigation Bar -->
-        <nav class="bg-gray-800 text-white p-4 fixed w-full z-50 shadow-lg" role="navigation" aria-label="Primary Navigation">
-            <div class="max-w-6xl mx-auto flex justify-between items-center">
-                <a href="#home" class="text-2xl font-bold">Kyran Fernandes</a>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#home" class="nav-link">Home</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#activities" class="nav-link">Activities</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+        
+        <!-- Navigation Bar (Sticky) -->
+        <nav id="navbar" class="header-sticky w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- NAV BAR TITLE - HIGHLIGHTS ONLY INITIALS 'K' (Cyan) AND 'F' (Amber) -->
+                    <a href="#hero" class="text-3xl font-extrabold text-white tracking-wider">
+                        <span class="text-primary">K</span>yran <span class="text-accent">F</span>ernandes
+                    </a>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#hero" class="nav-link text-gray-300 hover:text-accent">Home</a>
+                        <a href="#about" class="nav-link text-gray-300 hover:text-accent">About</a>
+                        <a href="#projects" class="nav-link text-gray-300 hover:text-accent">Projects</a>
+                        <a href="#contact" class="nav-link text-gray-300 hover:text-accent">Contact</a>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button
+                        id="mobile-menu-btn"
+                        type="button"
+                        class="md:hidden text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary p-2 rounded-md"
+                        aria-controls="mobile-menu"
+                        aria-expanded="false"
+                    >
+                        <i class="fas fa-bars h-6 w-6"></i>
+                    </button>
                 </div>
-                <button
-                id="mobile-menu-btn"
-                class="md:hidden text-white focus:outline-none"
-                aria-expanded="false"
-                aria-controls="mobile-menu"
-                aria-label="Toggle navigation menu"
-                >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
             </div>
-            <div id="mobile-menu" class="md:hidden hidden bg-gray-700 mt-2 rounded-md" role="menu">
-                <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Home</a>
-                <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">About</a>
-                <a href="#projects" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Projects</a>
-                <a href="#activities" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Activities</a>
-                <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-600 nav-link" role="menuitem">Contact</a>
+
+            <!-- Mobile Menu Dropdown -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-dark-bg shadow-lg">
+                    <a href="#hero" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800">Home</a>
+                    <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800">About</a>
+                    <a href="#projects" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800">Projects</a>
+                    <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-800">Contact</a>
+                </div>
             </div>
         </nav>
 
-        <!-- Home Section -->
-        <section id="home" class="min-h-screen gradient-bg flex items-center justify-center text-white pt-16">
-            <div class="text-center px-6">
-                <div class="fade-in">
-                    <div
-                    class="w-32 h-32 mx-auto mb-8 bg-white/20 rounded-full flex items-center justify-center text-6xl backdrop-blur-sm"
-                    aria-hidden="true"
+        <!-- Hero Section -->
+        <section id="hero" class="bg-dark-bg text-white py-20 sm:py-32 min-h-[80vh] flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl text-center mx-auto">
+                    <!-- Profile Picture Frame (w-60 h-60) -->
+                    <div class="img-crop-circle w-60 h-60 mx-auto mb-6 shadow-2xl border-4 border-white transform hover:scale-105 transition duration-500">
+                        <!-- Using the correct file name for the profile picture -->
+                        <img
+                        src="me.jpg"
+                        alt="Kyran Fernandes Profile Picture"
+                        class="w-full h-full object-cover about-profile-img"
+                        onerror="this.onerror=null; this.src='https://placehold.co/240x240/6366f1/ffffff?text=KY'"
+                        />
+                    </div>
+                    <!-- Name (Headline) - Entire name is the accent color (Amber) -->
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight tracking-tighter text-accent">
+                        Kyran Fernandes
+                    </h1>
+                    
+                    <!-- Subtitle provides immediate context -->
+                    <h2 class="text-2xl sm:text-3xl font-semibold text-primary/80 mb-12 mt-4 tracking-wider">
+                        Aspiring Video Game Developer
+                    </h2>
+
+                    <a
+                    href="#contact"
+                    class="inline-block bg-white text-primary font-bold text-lg py-3 px-8 rounded-full shadow-2xl hover:bg-gray-200 transition duration-300 transform hover:scale-105"
                     >
-                        🎓
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-bold mb-6">Kyran Fernandes</h1>
-                    <p class="text-xl md:text-2xl mb-8">Year 13 Student</p>
-                    <p class="text-lg mb-8 max-w-2xl mx-auto opacity-90">
-                    </p>
-                    <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4">
-                        <button
-                        onclick="scrollToSection('about')"
-                        class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300"
-                        >
-                            Learn More
-                        </button>
-                        <button
-                        onclick="scrollToSection('contact')"
-                        class="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300"
-                        >
-                            Get In Touch
-                        </button>
-                    </div>
+                        Get In Touch
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-white">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="fade-in">
-                    <h2 class="text-3xl font-bold text-center section-heading mx-auto">About Me</h2>
-                    <div class="grid md:grid-cols-2 gap-12 items-center mt-16">
-                        <div>
-                            <div
-                            class="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center overflow-hidden"
-                            >
-                                <!-- Reverted to local image path as requested -->
-                                <img src="me.jpg" alt="Kyran Fernandes" class="about-profile-img" />
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold mb-6 text-blue-600"></h3>
-                            <p class="text-gray-600 mb-6 leading-relaxed">
-                                Hi! I'm Kyran, a Year 13 student at Vanguard Military School with a passion for chess, hockey, technology, and tennis.
-                                I love strategic thinking and competitive sports, and am always eager to learn new things.
-                            </p>
-                            <p class="text-gray-600 mb-8 leading-relaxed">
-                                When I'm not studying, you'll find me playing video games, playing hockey, coding personal projects,
-                                or hitting tennis balls on the court. I'm excited about pursuing computer science at university
-                            </p>
-                            <div class="text-center">
-                                <div class="inline-block p-6 bg-gray-50 rounded-lg">
-                                    <div class="text-3xl font-bold text-blue-600">Class of 2025</div>
-                                    <div class="text-gray-600 mt-2">Vanguard Military School</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section id="about" class="py-16 sm:py-24 bg-dark-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-heading text-4xl mb-16">About Me</h2>
                 </div>
+                
+                <!-- Increased max-w-4xl for better text flow, was max-w-3xl -->
+                <div class="max-w-4xl mx-auto p-8 bg-dark-card rounded-xl shadow-2xl border border-gray-700">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Discipline, Vision, and the Drive to Build</h3>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Hey! I’m Kyran Fernandes, a Year 13 student at Vanguard Military School. My time at Vanguard has helped me build <strong>discipline, leadership, and resilience</strong> - qualities that drive me to push beyond my limits and think creatively in everything I do. I’m passionate about combining structure with imagination, and I take pride in constantly learning and improving myself.
+                    </p>
+                    
+                    <p class="text-gray-300 leading-relaxed">
+                        I’m working towards becoming a <strong>video game developer</strong>, driven by my love for technology, storytelling, and game design. I’m fascinated by how games can connect people, spark emotions, and inspire creativity. As I prepare for university, my goal is to gain the skills and experience needed to create <strong>immersive, meaningful gaming experiences</strong> that leave a lasting impact on players around the world.
+                    </p>
+                </div>
+                
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-20 bg-gray-100">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="fade-in">
-                    <h2 class="text-3xl font-bold text-center section-heading mx-auto">My Projects</h2>
-                    <div class="grid md:grid-cols-2 gap-12 mt-16">
-                        <!-- New Project: Flag Frenzy: Global Agent -->
-                        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center card-hover">
-                            <!-- Updated image container for Flag Frenzy to be circular -->
-                            <div class="w-60 h-60 mx-auto rounded-full overflow-hidden mb-6 shadow-lg">
-                                <img src="flag_frenzy_logo.jpg" alt="Flag Frenzy: Global Agent Project Image" class="w-full h-full object-cover" />
-                            </div>
-                            <h3 class="text-2xl font-bold text-blue-600 mb-3">Flag Frenzy: Global Agent</h3>
-                            <p class="text-gray-700 mb-6 leading-relaxed">
-                                Flag Frenzy: Global Agent is an immersive web app that transforms your knowledge of world flags into a high-stakes global operation. As a top-tier Global Agent, you’re the last line of defense against chaos — tasked with identifying flags to intercept threats, prevent international disasters, and protect the world’s most critical events. Every correct answer is a decisive move; every mistake risks tipping the balance.
-                                The mission is clear: Know the world. Save it.
-                            </p>
-                            <div class="flex space-x-4">
-                                <a href="https://kyferr.github.io/flagfrenzy/" class="bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600 transition duration-300" aria-label="Play Flag Frenzy Now">Play Now</a>
-                            </div>
-                        </div>
-
-                        <!-- Placeholder for more projects -->
-                        <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center card-hover">
-                            <div class="w-24 h-24 mx-auto mb-6 bg-yellow-200 rounded-full flex items-center justify-center text-5xl text-yellow-700 shadow-lg" aria-hidden="true">
-                                💡
-                            </div>
-                            <p class="text-gray-800 text-xl font-semibold mb-3 max-w-2xl">
-                                More projects coming soon!
-                            <p class="text-gray-500 text-sm italic">
-                                Keep an eye out for updates!
-                            </p>
-                        </div>
-                    </div>
+        <section id="projects" class="py-16 sm:py-24 bg-dark-card">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-heading text-4xl mb-16">My Projects</h2>
                 </div>
-            </div>
-        </section>
-
-        <!-- Activities Section -->
-        <section id="activities" class="py-20 bg-gray-50">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="fade-in">
-                    <h2 class="text-3xl font-bold text-center section-heading mx-auto">Activities & Interests</h2>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-                        <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
-                            <div class="text-5xl mb-4">♟️</div>
-                            <h3 class="text-lg font-semibold mb-2 text-blue-600">Chess</h3>
-                            <p class="text-gray-600 text-sm"></p>
+                
+                <!-- Grid layout with 3 columns on large screens -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <!-- Project 1: Flag Frenzy: Global Agent -->
+                    <div class="project-card bg-dark-bg rounded-xl shadow-lg hover:shadow-2xl overflow-hidden cursor-pointer border border-gray-700">
+                        <!-- Project image container set to dark-bg to match the logo's background -->
+                        <div class="project-img-container h-60 bg-dark-bg flex items-center justify-center">
+                            <img 
+                                src="flagfrenzy_logo.png" 
+                                alt="Flag Frenzy: Global Agent Logo" 
+                                class="project-img w-full h-full object-contain p-4" 
+                                onerror="this.onerror=null; this.src='https://placehold.co/600x300/06b6d4/ffffff?text=Flag+Frenzy'"
+                            />
                         </div>
-
-                        <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
-                            <div class="text-5xl mb-4">🏑</div>
-                            <h3 class="text-lg font-semibold mb-2 text-blue-600">Hockey</h3>
-                            <p class="text-gray-600 text-sm"></p>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
-                            <div class="text-5xl mb-4">💻</div>
-                            <h3 class="text-lg font-semibold mb-2 text-blue-600">Coding </h3>
-                            <p class="text-gray-600 text-sm"></p>
-                        </div>
-
-                        <div class="card-hover bg-white rounded-xl p-6 text-center shadow-lg">
-                            <div class="text-5xl mb-4">🎾</div>
-                            <h3 class="text-lg font-semibold mb-2 text-blue-600">Tennis</h3>
-                            <p class="text-gray-600 text-sm"></p>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">Flag Frenzy: Global Agent</h3>
+                            <p class="text-gray-300 mb-4">An immersive web app transforming flag knowledge into a high-stakes global operation. As a Global Agent, you must identify flags to intercept threats and prevent international disasters. Know the world. Save it.</p>
+                            <div class="flex space-x-2 mb-4">
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <!-- LIVE DEMO LINK -->
+                                <a href="https://kyferr.github.io/flagfrenzy" target="_blank" class="text-primary hover:text-cyan-400 font-medium transition duration-300 flex items-center">
+                                    Live Demo <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                                </a>
+                                <!-- GITHUB CODE LINK -->
+                                <a href="https://github.com/KyFerr/flagfrenzy/tree/main" target="_blank" class="text-gray-400 hover:text-white transition duration-300" aria-label="View Code on GitHub">
+                                    <i class="fab fa-github text-2xl"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Project Placeholder Card 2 (Standard Size) - RETAINED DESCRIPTION -->
+                    <div class="project-card bg-dark-bg rounded-xl shadow-lg border-2 border-dashed border-gray-600 flex flex-col justify-center items-center p-6 text-center">
+                        <div class="text-accent mb-4">
+                            <!-- Lightbulb Icon -->
+                            <i class="fas fa-lightbulb text-5xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Project Two</h3>
+                        <p class="text-gray-300 text-lg">Reserved for my next big project!</p>
+                    </div>
+
+                    <!-- Project Placeholder Card 3 (Standard Size) - UPDATED DESCRIPTION -->
+                    <div class="project-card bg-dark-bg rounded-xl shadow-lg border-2 border-dashed border-gray-600 flex flex-col justify-center items-center p-6 text-center">
+                        <div class="text-accent mb-4">
+                            <!-- Code Icon -->
+                            <i class="fas fa-hands-helping text-5xl"></i> <!-- Changed icon to suggest collaboration -->
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Project Three</h3>
+                        <p class="text-gray-300 text-lg">Seeking community suggestions for my next big project! Send your best ideas my way.</p>
+                    </div>
+                    
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="max-w-4xl mx-auto px-6">
-                <div class="fade-in">
-                    <h2 class="text-3xl font-bold text-center section-heading mx-auto">Let's Connect!</h2>
-                    <div class="grid md:grid-cols-2 gap-12 mt-16">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-6 text-blue-600">Get In Touch</h3>
-                            <p class="text-gray-600 mb-8 leading-relaxed">
-                                I'm always excited to connect with fellow students, mentors, and anyone interested in technology and innovation.
-                                Feel free to reach out through any of these platforms!
-                            </p>
+        <section id="contact" class="py-16 sm:py-24 bg-dark-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="section-heading text-4xl mb-16">Get in Touch</h2>
+                </div>
 
-                            <div class="space-y-4">
-                                <a href="mailto:kyranfernandes08@gmail.com" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-300 social-icon">
-                                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-xl">
-                                        <i class="fa-solid fa-envelope"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-semibold text-gray-800">Email</div>
-                                        <div class="text-gray-600">kyranfernandes08@gmail.com</div>
-                                    </div>
-                                </a>
-
-                                <a href="https://instagram.com/kyranferns" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-300 social-icon">
-                                    <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-xl">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-semibold text-gray-800">Instagram</div>
-                                        <div class="text-gray-600">@kyranferns</div>
-                                    </div>
-                                </a>
-
-                                <a href="https://facebook.com/kyranferns" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition duration-300 social-icon">
-                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl">
-                                        <i class="fa-brands fa-facebook-f"></i>
-                                    </div>
-                                    <div>
-                                        <div class="font-semibold text-gray-800">Facebook</div>
-                                        <div class="text-gray-600">kyranferns</div>
-                                    </div>
-                                </a>
+                <div class="grid md:grid-cols-2 gap-12 items-start">
+                    <!-- Contact Info -->
+                    <div class="space-y-8 p-6 bg-dark-card rounded-xl shadow-2xl border border-gray-700">
+                        <p class="text-lg text-gray-300">
+                            I am currently open to new opportunities, collaborations, and projects. Whether you have a question or just want to say hi, feel free to reach out!
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <!-- Email Updated -->
+                                <div class="p-3 rounded-full bg-primary text-white contact-icon-bg transition duration-300">
+                                    <i class="fas fa-envelope text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Email Me</h4>
+                                    <a href="mailto:kyranfernandes08@gmail.com" class="text-primary hover:underline transition duration-300">kyranfernandes08@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <!-- Phone Updated -->
+                                <div class="p-3 rounded-full bg-primary text-white contact-icon-bg transition duration-300">
+                                    <i class="fas fa-phone text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Call Me</h4>
+                                    <a href="tel:+64274119764" class="text-primary hover:underline transition duration-300">+64 274119764</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4">
+                                <!-- Location Updated -->
+                                <div class="p-3 rounded-full bg-primary text-white contact-icon-bg transition duration-300">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">Location</h4>
+                                    <span class="text-gray-300">Auckland, New Zealand</span>
+                                </div>
                             </div>
                         </div>
 
-                        <form id="contact-form" class="space-y-6" action="https://formspree.io/f/xldnveop" method="POST" aria-label="Contact Form">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
-                                <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                required
-                                placeholder="Your Name"
-                                class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
+                        <!-- Social Media Links -->
+                        <div class="pt-4 border-t border-gray-700">
+                            <h4 class="font-semibold text-white mb-3">Connect on Socials:</h4>
+                            <div class="flex space-x-6 text-3xl">
+                                <!-- Instagram Confirmed: Full URL + target="_blank" -->
+                                <a 
+                                    href="https://instagram.com/kyranferns" 
+                                    target="_blank" 
+                                    class="text-gray-400 hover:text-accent transition duration-300" 
+                                    aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <!-- Facebook Confirmed: Full URL + target="_blank" -->
+                                <a 
+                                    href="https://facebook.com/kyranferns"
+                                    target="_blank"
+                                    class="text-gray-400 hover:text-accent transition duration-300" 
+                                    aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <!-- GitHub Confirmed: Full URL + target="_blank" -->
+                                <a 
+                                    href="https://github.com/KyFerr"
+                                    target="_blank"
+                                    class="text-gray-400 hover:text-accent transition duration-300" 
+                                    aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
                             </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                                <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                placeholder="Your Email"
-                                class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-                            <div>
-                                <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
-                                <textarea
-                                id="message"
-                                name="message"
-                                rows="5"
-                                required
-                                placeholder="Your Message"
-                                class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                                ></textarea>
-                            </div>
-                            <button
-                            type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300"
-                            >
-                                Send Message
-                            </button>
-                        </form>
+                        </div>
                     </div>
+
+                    <!-- Contact Form (UPDATED to use Formspree endpoint) -->
+                    <form 
+                        action="https://formspree.io/f/xldnveop" 
+                        method="POST" 
+                        class="space-y-6 p-8 bg-dark-card rounded-xl shadow-2xl border border-gray-700"
+                    >
+                        <!-- Formspree requires method="POST" and the action attribute set to your unique endpoint -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                            <!-- Renamed name attribute to standard "name" -->
+                            <input type="text" id="name" name="name" required class="block w-full rounded-lg bg-gray-700 border-gray-600 text-white shadow-sm focus:border-primary focus:ring-primary p-3 placeholder-gray-400" placeholder="Your Full Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                            <!-- Renamed name attribute to Formspree standard "_replyto" to set the return address -->
+                            <input type="email" id="email" name="_replyto" required class="block w-full rounded-lg bg-gray-700 border-gray-600 text-white shadow-sm focus:border-primary focus:ring-primary p-3 placeholder-gray-400" placeholder="your.email@example.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                            <!-- Renamed name attribute to standard "message" -->
+                            <textarea id="message" name="message" rows="5" required class="block w-full rounded-lg bg-gray-700 border-gray-600 text-white shadow-sm focus:border-primary focus:ring-primary p-3 placeholder-gray-400"></textarea>
+                        </div>
+                        <div>
+                            <!-- Button uses the new gradient-bg (Cyan to Emerald) and shadow-secondary/30 -->
+                            <button type="submit" class="w-full py-3 px-4 rounded-lg font-semibold text-white gradient-bg hover:opacity-90 transition duration-300 shadow-xl shadow-secondary/30 transform hover:scale-[1.01]">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="bg-gray-800 text-white text-center p-6">
-            <p>© 2025 Kyran Fernandes. All rights reserved
-            </p>
+        <footer class="p-8 border-t border-gray-700 text-center text-gray-500 bg-dark-bg">
+            <p>&copy; 2025 Kyran Fernandes. All rights reserved.</p>
         </footer>
+
     </div>
 
-    <!-- Custom JavaScript -->
-    <script src="scripts.js"></script>
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            const mainContent = document.getElementById('main-content');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            // --- 1. Loading Screen Logic ---
+            
+            // Wait for 1500ms (1.5 seconds) to simulate loading time
+            setTimeout(() => {
+                // Start the fade-out of the loading screen
+                loadingScreen.classList.add('hidden');
+                loadingScreen.setAttribute('aria-busy', 'false');
+
+                // Wait for the CSS transition to complete
+                const handleTransitionEnd = (event) => {
+                    // Only run when the opacity property finishes transitioning
+                    if (event.propertyName === 'opacity') {
+                        loadingScreen.remove(); // Remove from DOM after transition
+                        mainContent.classList.remove('hidden-content');
+                        mainContent.focus(); // Focus for accessibility
+                        loadingScreen.removeEventListener('transitionend', handleTransitionEnd);
+                    }
+                };
+
+                loadingScreen.addEventListener('transitionend', handleTransitionEnd);
+            }, 1500);
+            
+            // --- 2. Mobile Menu Toggle ---
+            mobileMenuBtn.addEventListener('click', () => {
+                const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+                mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+
+            // --- 3. Active Link Highlighting based on Scroll ---
+            
+            const activateLink = () => {
+                let current = 'hero'; 
+                
+                // Determine which section is currently visible
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    // Check if the scroll position is within the section bounds, with a small offset
+                    if (window.scrollY >= sectionTop - 150) { 
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                // Update active class on nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.href.includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Set up initial state and listeners
+            activateLink();
+            window.addEventListener('scroll', activateLink);
+
+            
+        });
+    </script>
 </body>
 </html>
