@@ -1,6 +1,7 @@
 # Kyran Fernandes – Portfolio Website
 
-![GitHub](https://img.shields.io/badge/GitHub-KyFerr-black?logo=github&logoColor=white) ![LinkedIn](https://img.shields.io/badge/LinkedIn-Kyran%20Fernandes-blue?logo=linkedin&logoColor=white)
+![GitHub][![GitHub](https://img.shields.io/badge/GitHub-KyFerr-black?logo=github&logoColor=white)](https://github.com/KyFerr)  ![LinkedIn](https://img.shields.io/badge/LinkedIn-Kyran%20Fernandes-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kyranferns)
+
 
 Personal portfolio website showcasing my projects, skills, and interest in coding and software development.
 
@@ -40,5 +41,5 @@ An interactive web-based game focused on country flags and global recognition.
 ---
 
 ## Contact
-[![GitHub](https://img.shields.io/badge/GitHub-kyferr-black?logo=github&logoColor=white)](https://github.com/kyferr)  
+[![GitHub](https://img.shields.io/badge/GitHub-kyferr-black?logo=github&logoColor=white)](https://github.com/KyFerr)  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Kyran%20Fernandes-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kyranferns)
