@@ -32,12 +32,6 @@ An interactive web-based game focused on country flags and global recognition.
 
 ---
 
-## Future Projects
-- Interactive web apps with React  
-- Portfolio expansion with backend integration  
-
----
-
 ## Purpose of This Site
 - Showcase coding projects  
 - Demonstrate practical programming skills  
