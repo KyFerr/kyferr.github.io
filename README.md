@@ -1,6 +1,8 @@
 # Kyran Fernandes – Portfolio Website
 
-![GitHub][![GitHub](https://img.shields.io/badge/GitHub-KyFerr-black?logo=github&logoColor=white)](https://github.com/KyFerr)  ![LinkedIn](https://img.shields.io/badge/LinkedIn-Kyran%20Fernandes-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kyranferns)
+[![GitHub](https://img.shields.io/badge/GitHub-KyFerr-black?logo=github&logoColor=white)](https://github.com/KyFerr)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kyran%20Fernandes-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kyranferns)
+
 
 
 Personal portfolio website showcasing my projects, skills, and interest in coding and software development.
