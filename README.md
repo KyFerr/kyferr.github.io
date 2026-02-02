@@ -39,9 +39,3 @@ An interactive web-based game focused on country flags and global recognition.
 - Showcase coding projects  
 - Demonstrate practical programming skills  
 - Track growth as a developer  
-
----
-
-## Contact
-[![GitHub](https://img.shields.io/badge/GitHub-kyferr-black?logo=github&logoColor=white)](https://github.com/KyFerr)  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kyran%20Fernandes-blue?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kyranferns)
