@@ -12,7 +12,7 @@ Personal portfolio website showcasing my projects, skills, and interest in codin
 ---
 
 ## About
-I’m a **Computer Science student at the University of Auckland** with a strong interest in coding and problem solving.  
+Heya! My name is Kyran Fernandes and I’m a **First year Computer Science student at the University of Auckland** with a strong interest in coding and problem solving!  
 This website highlights my projects, technical skills, and learning progress as I continue to build experience in web development.
 
 ---
